@@ -64,6 +64,42 @@ public class AudioPlayer
 			}
 		}
 
+		if (audioMode == AudioMode.Grandma)
+		{
+			try (
+					InputStream audioSource = getClass().getResourceAsStream(clipName+"Grandma");
+					BufferedInputStream bufferedStream = new BufferedInputStream(audioSource);
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(bufferedStream))
+			{
+				Clip clip = AudioSystem.getClip();
+				clips.put(clipName+"Grandma", clip);
+				clip.open(audioInputStream);
+				return true;
+			}
+			catch (UnsupportedAudioFileException | IOException | LineUnavailableException | SecurityException ex)
+			{
+				log.error("Unable to load sound " + clipName+"Grandma", ex);
+			}
+		}
+
+		if (audioMode == AudioMode.Grandpa)
+		{
+			try (
+					InputStream audioSource = getClass().getResourceAsStream(clipName+"Grandpa");
+					BufferedInputStream bufferedStream = new BufferedInputStream(audioSource);
+					AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(bufferedStream))
+			{
+				Clip clip = AudioSystem.getClip();
+				clips.put(clipName+"Grandpa", clip);
+				clip.open(audioInputStream);
+				return true;
+			}
+			catch (UnsupportedAudioFileException | IOException | LineUnavailableException | SecurityException ex)
+			{
+				log.error("Unable to load sound " + clipName+"Grandpa", ex);
+			}
+		}
+
 		try (
 			InputStream audioSource = getClass().getResourceAsStream(clipName);
 			BufferedInputStream bufferedStream = new BufferedInputStream(audioSource);
